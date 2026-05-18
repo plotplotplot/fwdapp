@@ -30,7 +30,7 @@ class Role {
  */
 const get_talk_info = () => {
     // TODO: Get talk title and description
-    //  Call backend
+    //  1. Call backend
     
     return {
         "title": null,
@@ -39,6 +39,28 @@ const get_talk_info = () => {
     };
 }
 
+/**
+ * @returns {string[]} List of all co-host names
+ */
+const get_co_hosts = () => {
+    // TODO: Get co-host names
+    //  1. Call backend
+
+    return [];
+}
+
+/**
+ * @returns {Attendee[]} List of all attendees (including host and co-hosts)
+ */
+const get_all_attendees = () => {
+    // TODO: Get attendee names
+    //  1. Call backend
+    //  2. Turn to class objects
+
+    return [];
+}
+
+/* DISPLAY DATA */
 const fill_talk_form = () => {
     const title_inpt = document.getElementById("title");
     const descr_inpt = document.getElementById("description");
@@ -51,16 +73,15 @@ const fill_talk_form = () => {
     img.setAttribute("src", talk_info["img"]);
 }
 
-/**
- * @returns {Attendee[]} List of all attendees (including host and co-hosts)
- */
-const get_all_attendees = () => {
-    // TODO: Get attendee names, emails, and roles
-    //  Call backend
-    //  Turn to class objects
+const fill_co_host_form = () => {
+    const ch_inpt = document.getElementById("co_host");
 
-    return [];
+    const co_hosts = get_co_hosts();
+    const ch_str = co_hosts.join(", ");
+
+    ch_inpt.setAttribute("placeholder", co_hosts);
 }
+
 const build_attendee_row = (table, attendee) => {
     const row = document.createElement("tr");
 
@@ -119,7 +140,7 @@ const load_display = () => {
     fill_talk_form();
 
     // Load co-hosts
-    
+    fill_co_host_form();
 
     // Load attendee table
     const table = document.getElementById("attendee_table");
@@ -127,9 +148,9 @@ const load_display = () => {
     attendees.forEach(attendee => {
        build_attendee_row(table, attendee); 
     });
+
+    console.log("Display loaded");
 }
-
-
 
 
 /* EVENT LISTENERS */
@@ -207,4 +228,5 @@ add_co_host_btn.addEventListener("click", (evt) => {
 
 document.addEventListener("load", () => {
     // TODO: Load talk, co-host, and attendant info, if exists
+    // load_display();
 });
