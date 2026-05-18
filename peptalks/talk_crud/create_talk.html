@@ -79,6 +79,9 @@
             </section>
         </main>
 
-        <script src="create_talk.js"></script>
+        <script type="module">
+            import { init } from "./create_talk.js";
+            await init();
+        </script>
     </body>
 </html>
